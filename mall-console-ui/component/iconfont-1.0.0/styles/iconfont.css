@@ -15,6 +15,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-touxiang:before {
+  content: "\e600";
+}
+
+.icon-mima:before {
+  content: "\e63d";
+}
+
 .icon-check-circle:before {
   content: "\e77d";
 }

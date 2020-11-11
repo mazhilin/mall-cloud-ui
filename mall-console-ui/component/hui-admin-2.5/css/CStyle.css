@@ -1,0 +1,50 @@
+.C-list {
+  width: 100px;
+}
+.C-list .C-list-ul {
+  width: 100%;
+}
+.C-list .C-list-ul a {
+  text-decoration: none;
+}
+.C-list .C-list-ul li {
+  width: 100%;
+  height: 70px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.C-list .C-list-ul li .C-list-ul-img {
+  width: 100%;
+  height: 50px;
+  position: relative;
+}
+.C-list .C-list-ul li .C-list-ul-img img {
+  width: 25px;
+  height: auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.C-list .C-list-ul li .C-list-ul-p {
+  width: 100%;
+  height: 20px;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+  text-decoration: none;
+  line-height: 12px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.C-list .C-list-ul li:hover {
+  background: #2f4054;
+  box-shadow: 0 0 5px #242f3d inset;
+}
+.C-article {
+  left: 100px;
+}
+.C-hidden {
+  left: 100px;
+}
