@@ -1,16 +1,19 @@
-var utils = {
+const utils = {
     //baseUrl: 'http://47.104.133.96/shaker_test',
-    passportApiUrl: 'http://127.0.0.1:9001/passport',
-    consoleApiUrl: 'http://127.0.0.1:9001/console',
-    //baseUrl: 'http://127.0.0.1:8008/shaker',
-    updateBy: function() {
+    passportBaseUrl: 'http://127.0.0.1:9001/passport',
+    consoleBaseUrl: 'http://127.0.0.1:9002/console',
+
+    nickname: function () {
+        return window.localStorage.getItem('nickname');
+    },
+    updateBy: function () {
         return window.localStorage.getItem('updateBy');
     },
-    isChecked: function() {
-        var token = window.localStorage.getItem('token');
-        if(token){
+    isChecked: function () {
+        var token = window.localStorage.getItem('web_login_token');
+        if (token) {
             return token;
-        }else{
+        } else {
             return "";
         }
     },
@@ -102,44 +105,50 @@ var utils = {
         document.cookie = cookieString;
     },
     //获取Cookie
-    getCookie:function(name){
+    getCookie: function (name) {
         var strcookie = document.cookie;
         var arrcookie = strcookie.split("; ");
-        for(var i = 0; i < arrcookie.length; i++) {
+        for (var i = 0; i < arrcookie.length; i++) {
             var arr = arrcookie[i].split("=");
-            if(arr[0] == name) return unescape(arr[1]);
+            if (arr[0] == name) return unescape(arr[1]);
         }
         return null;
     },
     //删除Cookie
-    delCookie:function(name){
-        this.addCookie(name,1,-1)
+    delCookie: function (name) {
+        this.addCookie(name, 1, -1)
     },
     //判断对象是否为空
-    isEmpty:function(obj) {
-        for(var name in obj) {
+    isEmpty: function (obj) {
+        for (var name in obj) {
             return false;
         }
         return true;
     },
+    isNotEmpty: function (val) {
+        if (null != val && undefined != val && '' != val) {
+            return val;
+        }
+        return null;
+    },
     ajax: function (url, data, successCb, errorCb) {
-        layui.use('jquery', function() {
+        layui.use('jquery', function () {
             var $ = layui.$;
             $.getJSON(url, data || {}, successCb);
         })
 
     },
     // 删除对象中的某些属性
-    delKeys: function(obj, keys) {
-        keys.map(function(key) {
+    delKeys: function (obj, keys) {
+        keys.map(function (key) {
             delete obj[key];
         })
         return obj;
     },
-    optionNotEmpty: function(obj) {
+    optionNotEmpty: function (obj) {
         var flag = true;
-        for(var key in obj) {
-            if(obj[key]){
+        for (var key in obj) {
+            if (obj[key]) {
                 flag = false;
                 return flag;
             }
@@ -158,7 +167,7 @@ $('body').on('click', '#closeOpen', function() {
 $.ajaxSettings.beforeSend = function(request, xhr) {
     if(xhr.url.indexOf('login') <= -1){
         var token = utils.isChecked();
-        request.setRequestHeader('token', token)
+        request.setRequestHeader('web_login_token', token)
     }else{
         console.log(request);
     }
@@ -225,16 +234,6 @@ ListPage.prototype = {
             })
         })
     }
-}
-
-if(top.location.href.indexOf('login') <= -1){
-    $.get(utils.consoleApiUrl + "/api/console/home/isLogin", {}, function (response) {
-        if (response.code == 200) {
-            console.log("登陆验证成功")
-        } else if (response.code == '800') {
-            top.location.href = utils.baseUrl + '/manager/view/login.html-b';
-        }
-    })
 }
 
 

@@ -1,0 +1,520 @@
+.page-container {
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    background: #314d76;
+}
+.page-container p {
+    margin-bottom: 0;
+}
+.page-container .index-header {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+.page-container .index-header .content-bot2 {
+    overflow: auto;
+    clear: both;
+    height: 70px;
+}
+.page-container .index-header .content-bot2 li {
+    width: 24.3%;
+    height: 65px;
+    background: rgba(116,131,150,0.6);
+    margin-right: 11px;
+    float: left;
+}
+.page-container .index-header .content-bot2 li:last-child {
+    margin-right: 0;
+}
+.page-container .index-header .content-bot2 li .li-img {
+    width: 35%;
+    height: 100%;
+    float: left;
+    position: relative;
+}
+.page-container .index-header .content-bot2 li .li-img img {
+    width: 38px;
+    height: 38px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.page-container .index-header .content-bot2 li .li-text {
+    width: 65%;
+    height: 100%;
+    float: left;
+    margin-top: 4px;
+}
+.page-container .index-header .content-bot2 li .li-text p {
+    font-size: 20px;
+    color: #f5f44d;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+.page-container .index-header .content-bot2 li .li-text span {
+    font-size: 12px;
+    color: #fff;
+}
+.page-container .index-news {
+    width: 100%;
+    overflow: auto;
+    height: 350px;
+    clear: both;
+}
+.page-container .index-news .news-left {
+    width: 49.5%;
+    height: 340px;
+    margin-right: 1%;
+    background: rgba(116,131,150,0.6);
+    float: left;
+}
+.page-container .index-news .news-left .left-public-title {
+    height: 40px;
+    border-bottom: 1px solid #273750;
+    width: 100%;
+    padding: 0 10px;
+}
+.page-container .index-news .news-left .left-public-title p {
+    line-height: 40px;
+    color: #fff;
+    font-size: 14px;
+    float: left;
+    margin-bottom: 0;
+}
+.page-container .index-news .news-left .left-public-title div {
+    float: right;
+    line-height: 40px;
+    font-size: 12px;
+}
+.page-container .index-news .news-left .left-public-title div span {
+    color: #627da4;
+}
+.page-container .index-news .news-left .left-public-title div .active {
+    color: #fff;
+}
+.page-container .index-news .news-left .public-map {
+    width: 100%;
+    height: 300px;
+}
+.page-container .index-news .news-left .public-map ul {
+    width: 100%;
+    height: 300px;
+    overflow: auto;
+    padding-bottom: 5px;
+}
+.page-container .index-news .news-left .public-map ul li {
+    width: 100%;
+    height: auto;
+    padding: 10px 15px;
+    border-bottom: 1px solid #1f2c47;
+}
+.page-container .index-news .news-left .public-map ul li .li-top {
+    width: 100%;
+    height: auto;
+}
+.page-container .index-news .news-left .public-map ul li .li-top img {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.page-container .index-news .news-left .public-map ul li .li-top span {
+    color: #fff;
+    font-size: 12px;
+    vertical-align: middle;
+}
+.page-container .index-news .news-left .public-map ul li .li-bot {
+    overflow: auto;
+    clear: both;
+}
+.page-container .index-news .news-left .public-map ul li .li-bot .li-bot-yu {
+    background: #00a0e9;
+    color: #fff;
+    padding: 0 5px;
+    border-radius: 3px;
+    font-size: 12px;
+    float: left;
+    margin-top: 5px;
+}
+.page-container .index-news .news-left .public-map ul li .li-bot .li-bot-ing {
+    background: #ef5454;
+    color: #fff;
+    padding: 0 5px;
+    border-radius: 3px;
+    font-size: 12px;
+    float: left;
+    margin-top: 5px;
+}
+.page-container .index-news .news-left .public-map ul li .li-bot .li-bot-data {
+    float: right;
+}
+.page-container .index-news .news-left .public-map ul li .li-bot .li-bot-data div {
+    display: inline-block;
+    margin-left: 10px;
+}
+.page-container .index-news .news-left .public-map ul li .li-bot .li-bot-data div img {
+    margin-right: 5px;
+    height: 15px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.page-container .index-news .news-left .public-map ul li .li-bot .li-bot-data div span {
+    color: #fff;
+    font-size: 12px;
+    vertical-align: middle;
+}
+.page-container .index-news .news-right {
+    width: 49%;
+    background: rgba(116,131,150,0.6);
+    float: left;
+    height: 340px;
+}
+.page-container .index-news .news-right .left-public-title {
+    height: 40px;
+    border-bottom: 1px solid #273750;
+    width: 100%;
+    padding: 0 10px;
+}
+.page-container .index-news .news-right .left-public-title p {
+    line-height: 40px;
+    color: #fff;
+    font-size: 14px;
+    float: left;
+    margin-bottom: 0;
+}
+.page-container .index-news .news-right .left-public-title div {
+    float: right;
+    line-height: 40px;
+    font-size: 12px;
+}
+.page-container .index-news .news-right .left-public-title div span {
+    color: #627da4;
+}
+.page-container .index-news .news-right .left-public-title div .active {
+    color: #fff;
+}
+.page-container .index-news .news-right .news-right-body {
+    width: 100%;
+    height: 300px;
+}
+.page-container .index-news .news-right .news-right-body ul {
+    width: 100%;
+    padding: 0 20px;
+    height: 300px;
+    overflow: auto;
+}
+.page-container .index-news .news-right .news-right-body ul li {
+    width: 100%;
+    display: flex;
+    border-bottom: 1px solid #2f415f;
+    font-size: 12px;
+    color: #fff;
+    padding: 5px 0;
+}
+.page-container .index-news .news-right .news-right-body ul li .name {
+    width: 32%;
+}
+.page-container .index-news .news-right .news-right-body ul li .fatie {
+    margin-right: 2%;
+}
+.page-container .index-news .news-right .news-right-body ul li .fatieNum {
+    color: #f5f44d;
+    text-align: center;
+}
+.page-container .index-news .news-right .news-right-body ul li .source {
+    width: 37%;
+    text-align: center;
+}
+.page-container .index-echartsBoxs {
+    width: 100%;
+    height: auto;
+    overflow: auto;
+    margin-top: 10px;
+    clear: both;
+}
+.page-container .index-echartsBoxs .echartsBoxs-left {
+    float: left;
+    width: 32.75%;
+    height: 300px;
+    margin-right: 10px;
+    background: rgba(116,131,150,0.6);
+}
+.page-container .index-echartsBoxs .echartsBoxs-left:last-child {
+    margin-right: 0;
+}
+.page-container .index-echartsBoxs .echartsBoxs-left .echartsBoxs-title {
+    width: 100%;
+    height: 40px;
+    line-height: 39px;
+    border-bottom: 1px solid #374558;
+    color: #fff;
+    font-size: 14px;
+    padding: 0 10px;
+}
+.page-container .index-echartsBoxs .echartsBoxs-left .echartsBoxs-left-echarts {
+    width: 100%;
+    height: 260px;
+}
+@media screen and (max-width: 1400px) {
+    .page-container {
+        width: 100%;
+        height: auto;
+        min-height: 100%;
+        background: #314d76;
+    }
+    .page-container p {
+        margin-bottom: 0;
+    }
+    .page-container .index-header {
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+    .page-container .index-header .content-bot2 {
+        overflow: auto;
+        clear: both;
+        height: 70px;
+    }
+    .page-container .index-header .content-bot2 li {
+        width: 24.2%;
+        height: 65px;
+        background: rgba(116,131,150,0.6);
+        margin-right: 11px;
+        float: left;
+    }
+    .page-container .index-header .content-bot2 li:last-child {
+        margin-right: 0;
+    }
+    .page-container .index-header .content-bot2 li .li-img {
+        width: 35%;
+        height: 100%;
+        float: left;
+        position: relative;
+    }
+    .page-container .index-header .content-bot2 li .li-img img {
+        width: 38px;
+        height: 38px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .page-container .index-header .content-bot2 li .li-text {
+        width: 65%;
+        height: 100%;
+        float: left;
+        margin-top: 4px;
+    }
+    .page-container .index-header .content-bot2 li .li-text p {
+        font-size: 20px;
+        color: #f5f44d;
+        font-weight: bold;
+        margin-bottom: 0;
+    }
+    .page-container .index-header .content-bot2 li .li-text span {
+        font-size: 12px;
+        color: #fff;
+    }
+    .page-container .index-news {
+        width: 100%;
+        overflow: auto;
+        height: 260px;
+        clear: both;
+    }
+    .page-container .index-news .news-left {
+        width: 49.5%;
+        height: 250px;
+        margin-right: 1%;
+        background: rgba(116,131,150,0.6);
+        float: left;
+    }
+    .page-container .index-news .news-left .left-public-title {
+        height: 40px;
+        border-bottom: 1px solid #273750;
+        width: 100%;
+        padding: 0 10px;
+    }
+    .page-container .index-news .news-left .left-public-title p {
+        line-height: 40px;
+        color: #fff;
+        font-size: 14px;
+        float: left;
+        margin-bottom: 0;
+    }
+    .page-container .index-news .news-left .left-public-title div {
+        float: right;
+        line-height: 40px;
+        font-size: 12px;
+    }
+    .page-container .index-news .news-left .left-public-title div span {
+        color: #627da4;
+    }
+    .page-container .index-news .news-left .left-public-title div .active {
+        color: #fff;
+    }
+    .page-container .index-news .news-left .public-map {
+        width: 100%;
+        height: 210px;
+    }
+    .page-container .index-news .news-left .public-map ul {
+        width: 100%;
+        height: 210px;
+        overflow: auto;
+        padding-bottom: 5px;
+    }
+    .page-container .index-news .news-left .public-map ul li {
+        width: 100%;
+        height: auto;
+        padding: 10px 15px;
+        border-bottom: 1px solid #1f2c47;
+    }
+    .page-container .index-news .news-left .public-map ul li .li-top {
+        width: 100%;
+        height: auto;
+    }
+    .page-container .index-news .news-left .public-map ul li .li-top img {
+        width: 15px;
+        height: 15px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .page-container .index-news .news-left .public-map ul li .li-top span {
+        color: #fff;
+        font-size: 12px;
+        vertical-align: middle;
+    }
+    .page-container .index-news .news-left .public-map ul li .li-bot {
+        overflow: auto;
+        clear: both;
+    }
+    .page-container .index-news .news-left .public-map ul li .li-bot .li-bot-yu {
+        background: #00a0e9;
+        color: #fff;
+        padding: 0 5px;
+        border-radius: 3px;
+        font-size: 12px;
+        float: left;
+        margin-top: 5px;
+    }
+    .page-container .index-news .news-left .public-map ul li .li-bot .li-bot-ing {
+        background: #ef5454;
+        color: #fff;
+        padding: 0 5px;
+        border-radius: 3px;
+        font-size: 12px;
+        float: left;
+        margin-top: 5px;
+    }
+    .page-container .index-news .news-left .public-map ul li .li-bot .li-bot-data {
+        float: right;
+    }
+    .page-container .index-news .news-left .public-map ul li .li-bot .li-bot-data div {
+        display: inline-block;
+        margin-left: 10px;
+    }
+    .page-container .index-news .news-left .public-map ul li .li-bot .li-bot-data div img {
+        margin-right: 5px;
+        height: 15px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .page-container .index-news .news-left .public-map ul li .li-bot .li-bot-data div span {
+        color: #fff;
+        font-size: 12px;
+        vertical-align: middle;
+    }
+    .page-container .index-news .news-right {
+        width: 49%;
+        background: rgba(116,131,150,0.6);
+        float: left;
+        height: 250px;
+    }
+    .page-container .index-news .news-right .left-public-title {
+        height: 40px;
+        border-bottom: 1px solid #273750;
+        width: 100%;
+        padding: 0 10px;
+    }
+    .page-container .index-news .news-right .left-public-title p {
+        line-height: 40px;
+        color: #fff;
+        font-size: 14px;
+        float: left;
+        margin-bottom: 0;
+    }
+    .page-container .index-news .news-right .left-public-title div {
+        float: right;
+        line-height: 40px;
+        font-size: 12px;
+    }
+    .page-container .index-news .news-right .left-public-title div span {
+        color: #627da4;
+    }
+    .page-container .index-news .news-right .left-public-title div .active {
+        color: #fff;
+    }
+    .page-container .index-news .news-right .news-right-body {
+        width: 100%;
+        height: 210px;
+    }
+    .page-container .index-news .news-right .news-right-body ul {
+        width: 100%;
+        padding: 0 20px;
+        height: 210px;
+        overflow: auto;
+    }
+    .page-container .index-news .news-right .news-right-body ul li {
+        width: 100%;
+        display: flex;
+        border-bottom: 1px solid #2f415f;
+        font-size: 12px;
+        color: #fff;
+        padding: 5px 0;
+    }
+    .page-container .index-news .news-right .news-right-body ul li .name {
+        width: 32%;
+    }
+    .page-container .index-news .news-right .news-right-body ul li .fatie {
+        margin-right: 2%;
+    }
+    .page-container .index-news .news-right .news-right-body ul li .fatieNum {
+        color: #f5f44d;
+        text-align: center;
+    }
+    .page-container .index-news .news-right .news-right-body ul li .source {
+        width: 37%;
+        text-align: center;
+    }
+    .page-container .index-echartsBoxs {
+        width: 100%;
+        height: auto;
+        overflow: auto;
+        margin-top: 10px;
+        clear: both;
+    }
+    .page-container .index-echartsBoxs .echartsBoxs-left {
+        float: left;
+        width: 32.6%;
+        height: 280px;
+        margin-right: 10px;
+        background: rgba(116,131,150,0.6);
+    }
+    .page-container .index-echartsBoxs .echartsBoxs-left:last-child {
+        margin-right: 0;
+    }
+    .page-container .index-echartsBoxs .echartsBoxs-left .echartsBoxs-title {
+        width: 100%;
+        height: 40px;
+        line-height: 39px;
+        border-bottom: 1px solid #374558;
+        color: #fff;
+        font-size: 14px;
+        padding: 0 10px;
+    }
+    .page-container .index-echartsBoxs .echartsBoxs-left .echartsBoxs-left-echarts {
+        width: 100%;
+        height: 240px;
+    }
+}

@@ -1,0 +1,93 @@
+.text-c {
+    text-align: left;
+}
+
+.page-footer {
+    padding-top: 20px;
+}
+
+.page-footer p {
+    display: block;
+    float: left;
+}
+
+.page-footer-select {
+    float: left;
+    margin-left: 30px;
+}
+
+.magictt-newCenter-page {
+    float: right;
+}
+
+.tcdPageCode a.prevPage {
+    display: inline-block;
+    width: 80px;
+    color: #000;
+    height: 26px;
+    line-height: 26px;
+    vertical-align: middle;
+    margin-right: 15px;
+    background: #fff;
+    border: 1px solid #eee;
+}
+
+.tcdPageCode span.current {
+    display: inline-block;
+    width: 22px;
+    height: 24px;
+    line-height: 24px;
+    background: #0F9AE0;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+.tcdPageCode a {
+    display: inline-block;
+    width: 22px;
+    height: 24px;
+    line-height: 24px;
+    background: #fff;
+    color: #000;
+    font-size: 14px;
+    text-align: center;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+.tcdPageCode a.nextPage {
+    display: inline-block;
+    width: 80px;
+    color: #000;
+    height: 26px;
+    line-height: 26px;
+    vertical-align: middle;
+    margin-left: 7px;
+    background: #fff;
+    border: 1px solid #eee;
+}
+
+.tcdPageCode {
+    text-align: center;
+}
+.edui-button.edui-for-135editor .edui-button-wrap .edui-button-body .edui-icon {
+    background-image: url("http://static.135editor.com/img/icons/editor-135-icon.png") !important;
+    background-size: 85%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#btn-star {
+    margin-top: 12px;
+}
+
+#classId {
+    margin: 0 15px;
+}
+
+#otherid {
+    margin: 0 15px;
+}
