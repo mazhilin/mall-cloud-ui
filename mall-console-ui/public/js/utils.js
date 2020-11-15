@@ -10,7 +10,7 @@ const utils = {
         return window.localStorage.getItem('updateBy');
     },
     isChecked: function () {
-        var token = window.localStorage.getItem('web_login_token');
+        let token = window.localStorage.getItem('web_login_token');
         if (token) {
             return token;
         } else {

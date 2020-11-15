@@ -3,10 +3,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="refresh" content="20">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport"
-          content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <script>
+        if (window !== top) top.location.replace(location.href);
+    </script>
+    <title>系统主页-顺盈云商城管理平台</title>
     <link href="../resources/icons/pivotal-cloud.ico" rel="Bookmark">
     <link href="../resources/icons/pivotal-cloud.ico" rel="Shortcut Icon">
     <link href="../resources/icons/pivotal-cloud.ico" rel="icon"/>
@@ -17,49 +21,48 @@
     <link href="../resources/fonts/iconfont.css" rel="stylesheet" type="text/css"/>
     <link href="../component/h-ui.admin/skin/default/skin.css" id="skin" rel="stylesheet" type="text/css"/>
     <link href="../component/h-ui.admin/css/style.css" rel="stylesheet" type="text/css"/>
-    <title>系统主页-顺盈云商城管理平台</title>
 </head>
 <body>
 <header class="navbar-wrapper" style="width: 100%">
     <div class="navbar navbar-fixed-top">
         <div class="container-fluid cl">
-            <!--     <a class="logo navbar-logo f-l mr-10 hidden-xs" href=""><img
-                     src="../resources/images/pivotal-cloud.png"/></a>-->
-            <a class="logo navbar-logo f-l mr-10 hidden-xs" href="/"></a>
-            <a class="logo navbar-logo-m f-l mr-10 visible-xs" href="/"></a>
             <span class="logo navbar-slogan f-l mr-10 hidden-xs"> 顺盈云商城管理平台</span>
             <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
 
             <nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
                 <ul class="cl">
-                    <li id="role" style="right:5px"></li>
                     <li class="dropDown dropDown_hover">
-                        <a href="#" class="dropDown_A" id="nickName"> <i class="Hui-iconfont">&#xe6d5;</i></a>
+                        <a class="dropDown_A" href="#" id="nickname"> <i class="Hui-iconfont">&#xe6d5;</i></a>
                         <input type="text" id="id" hidden="hidden">
                         <ul class="dropDown-menu menu radius box-shadow">
-                            <li><a href="javascript:;" id="userInfo">个人信息</a></li>
-                            <li><a href="javascript:;" id="updatePassword">修改密码</a></li>
-                            <li><a href="javascript:;" id="logout">注销登录</a></li>
+                            <li><a href="javascript:;" id="userInfo">
+                                <i class="Hui-iconfont" style="font-size:18px">&#xe705;</i>&nbsp;个人信息</a>
+                            </li>
+                            <li><a href="javascript:;" id="updatePassword">
+                                <i class="Hui-iconfont" style="font-size:18px">&#xe60e;</i>&nbsp;修改密码</a>
+                            </li>
+                            <li><a href="javascript:;" onclick="logout();">
+                                <i class="Hui-iconfont" style="font-size:18px">&#xe6f7;</i>&nbsp;退出登录</a>
+                            </li>
                         </ul>
-                    </li>
-                    <li id="LockScreen"><a href="lock-screen" title="锁屏">
-                        <i class="Hui-iconfont" style="font-size:18px">&#xe60e;</i></a>
                     </li>
 
                     <li id="Hui-msg">
                         <a href="#" title="消息"><span class="badge badge-danger">1</span>
                             <i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a>
                     </li>
+
                     <li id="Hui-skin" class="dropDown right dropDown_hover">
                         <a class="dropDown_A" href="javascript:;" title="换肤">
-                            <i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i></a>
+                            <i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i>
+                        </a>
                         <ul class="dropDown-menu menu radius box-shadow">
-                            <li><a href="javascript:;" data-val="blue" data-color="#314d76" title="蓝色">蓝色(默认)</a></li>
-                            <li><a href="javascript:;" data-val="default" data-color="#222" title="黑色">黑色</a></li>
-                            <li><a href="javascript:;" data-val="green" data-color="#19a97b" title="绿色">绿色</a></li>
-                            <li><a href="javascript:;" data-val="red" data-color="#c81623" title="红色">红色</a></li>
-                            <li><a href="javascript:;" data-val="yellow" data-color="#ffd200" title="黄色">黄色</a></li>
-                            <li><a href="javascript:;" data-val="orange" data-color="#ff4a00" title="橙色">橙色</a></li>
+                            <li><a data-color="#222" data-val="default" href="javascript:;" title="黑色">默认</a></li>
+                            <li><a data-color="#314d76" data-val="blue" href="javascript:;" title="蓝色">蓝色</a></li>
+                            <li><a data-color="#19a97b" data-val="green" href="javascript:;" title="绿色">绿色</a></li>
+                            <li><a data-color="#c81623" data-val="red" href="javascript:;" title="红色">红色</a></li>
+                            <li><a data-color="#ffd200" data-val="yellow" href="javascript:;" title="黄色">黄色</a></li>
+                            <li><a data-color="#ff4a00" data-val="orange" href="javascript:;" title="橙色">橙色</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -78,7 +81,7 @@
         <div class="Hui-tabNav-wp">
             <ul id="min_title_list" class="acrossTab cl">
                 <li class="active">
-                    <span title="系统主页" data-href="../html/welcome.html?v=0.001">系统主页</span>
+                    <span data-href="" id="showHomepageTab" title="系统主页">系统主页</span>
                     <em></em>
                 </li>
             </ul>
@@ -95,7 +98,8 @@
     <div id="iframe_box" class="Hui-article">
         <div class="show_iframe">
             <div style="display:none" class="loading"></div>
-            <iframe scrolling="yes" frameborder="0" src="../view/welcome.html?v=0001"></iframe>
+            <!--            <div style="display:none" class="loading"></div>
+                        <iframe scrolling="yes" frameborder="0" src="../view/welcome.html?v=0001"></iframe>-->
         </div>
     </div>
 </section>
@@ -114,6 +118,7 @@
 <script rel="prefetch" src="../component/h-ui.admin/js/H-ui.admin.js" type="text/javascript"></script>
 <!--/_footer 作为公共模版分离出去-->
 <script rel="prefetch" src="../component/jquery.contextmenu/jquery.contextmenu.r2.js" type="text/javascript"></script>
+<script rel="prefetch" src="../component/lightbox/2.8.1/js/lightbox.min.js" type="text/javascript"></script>
 <script rel="prefetch" src="../public/js/utils.js" type="text/javascript"></script>
 <script rel="prefetch" src="../static/js/index.js" type="text/javascript"></script>
 </body>

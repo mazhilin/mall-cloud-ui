@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <script>
+        if (window !== top) top.location.replace(location.href);
+    </script>
+    <title>个人信息-顺盈云商城管理平台</title>
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="lib/html5shiv.js"></script>
+    <script type="text/javascript" src="lib/respond.min.js"></script>
+    <![endif]-->
+    <link href="../../../resources/icons/pivotal-cloud.ico" rel="Bookmark">
+    <link href="../../../resources/icons/pivotal-cloud.ico" rel="Shortcut Icon">
+    <link href="../../../resources/icons/pivotal-cloud.ico" rel="icon"/>
+    <link href="../../../component/h-ui/css/H-ui.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../component/h-ui.admin/css/H-ui.admin.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../component/Hui-iconfont/1.0.8/iconfont.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../resources/font/iconfont.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../resources/fonts/iconfont.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../component/h-ui.admin/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../component/lightbox/2.8.1/css/lightbox.css" rel="stylesheet" type="text/css">
+    <!--[if IE 6]>
+    <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js"></script>
+    <script>DD_belatedPNG.fix('*');</script>
+    <![endif]-->
+
+    <title>职位详情</title>
+</head>
+<body>
+
+<div class="page-container">
+    <form class="form form-horizontal" id="form-system-position-show">
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">职位名称：</label>
+            <div class="formControls col-xs-8 col-sm-9" id="name"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">创建人：</label>
+            <div class="formControls col-xs-8 col-sm-9" id="createBy">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">修改人：</label>
+            <div class="formControls col-xs-8 col-sm-9" id="updateBy">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">创建时间：</label>
+            <div class="formControls col-xs-8 col-sm-9" id="createTime">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">修改时间：</label>
+            <div class="formControls col-xs-8 col-sm-9" id="updateTime">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">备注：</label>
+            <div class="formControls col-xs-8 col-sm-9" id="remark">
+            </div>
+        </div>
+    </form>
+</div>
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="../lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="../lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="../static/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="../static/h-ui.admin/js/H-ui.admin.js"></script>
+<!--/_footer 作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="../lib/lightbox2/2.8.1/js/lightbox.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        //获取html标签内容复制到对应文本
+
+        $.ajax({
+            type: 'get',
+            url: "/fansi/systemPosition/operation/" + getQueryString("id"),
+            dataType: 'json',
+            error: function (data) {
+                console.error(data);
+                if (data.responseText == "logout") {
+                    top.location.href = "/fansi?v=0.01";
+                }
+            },
+            success: function (data) {
+                if (data == "logout") {
+                    top.location.href = "/fansi?v=0.01";
+                } else {
+                    if (data.code == 200) {
+                        console.log(data.result);
+                        var domain = data.result.domain;
+
+                        html = '<ul class="cl portfolio-area">';
+                        /**/
+                        /*职位名称*/
+                        $("#name").html(domain.name);
+                        /*创建人*/
+                        $("#createBy").html(domain.createBy);
+                        /*修改人*/
+                        $("#updateBy").html(domain.updateBy);
+                        /*创建时间*/
+                        $("#createTime").html(crtTimeFtt(domain.createTime));
+                        /*修改时间*/
+                        $("#updateTime").html(crtTimeFtt(domain.updateTime));
+                        /*备注*/
+                        $("#remark").html(domain.remark);
+                    }
+                }
+            }
+        });
+    });
+
+    function dateFtt(fmt, date) {
+        var o = {
+            "M+": date.getMonth() + 1,                 //月份
+            "d+": date.getDate(),                    //日
+            "h+": date.getHours(),                   //小时
+            "m+": date.getMinutes(),                 //分
+            "s+": date.getSeconds(),                 //秒
+            "q+": Math.floor((date.getMonth() + 3) / 3), //季度
+            "S": date.getMilliseconds()             //毫秒
+        };
+        if (/(y+)/.test(fmt))
+            fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt))
+                fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+    }
+
+    //创建时间格式化显示
+    function crtTimeFtt(value) {
+        var crtTime = new Date(value);
+        return dateFtt("yyyy-MM-dd hh:mm:ss", crtTime);//直接调用公共JS里面的时间类处理的办法
+    }
+
+    function getQueryString(name) {//取URL参数  你要得到userid 就传userid
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return null;
+    }
+</script>
+</body>
+</html>

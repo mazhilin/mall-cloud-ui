@@ -56,7 +56,7 @@ p {
 .container-top .container-top-public .public-content .public-content-text .text-num i {
   width: 20px;
   height: 20px;
-  background: url(../img/school-num.png) no-repeat;
+/*  background: url(../images/mall-vip.png) no-repeat;*/
   display: inline-block;
   margin-right: 4px;
 }
@@ -65,7 +65,7 @@ p {
   top: 4px;
   width: 24px;
   height: 24px;
-  background: url(../img/personnel-num.png) no-repeat;
+  /*  background: url(../images/mall-vip.png) no-repeat;*/
 }
 .container-top .container-top-public .public-content .public-content-echart {
   width: 66.9%;
@@ -461,7 +461,7 @@ p {
 .time-tag {
   width: 8px;
   height: 6px;
-  background: url(../img/triangle.jpg) no-repeat;
+  /* background: url(../images/mall-vip.png) no-repeat;*/
   display: inline-block;
   position: absolute;
   right: 33px;
