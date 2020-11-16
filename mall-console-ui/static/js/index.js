@@ -1,30 +1,32 @@
+// [2.1] 定义基础常量
+const constant = {
+    index_body_tab: 'body',
+    index_top_menu: '.into-input input',
+    index_left_menu: '#login',
+    show_userInfo: '#userInfo',
+    index_exit_login: '#logout',
+    index_save_submit: '#saveSubmit',
+    show_nickname: '#nickname',
+    show_menuList: '#menuTreeList',
+    show_hui_aside: '.Hui-aside',
+    show_homepageTab: '#showHomepageTab',
+    show_homepage: '.show_iframe',
+    show_updatePassword: '#showUpdatePassword',
+    show_user_id: '#id',
+    show_logout: '#logout'
+};
+
+// [2.2] 定义接口API
+const api = {
+    userInfo: '/api/console/home/userInfo',
+    isLogin: '/api/console/home/isLogin',
+    updatePassword: '/api/console/center/updatePassword',
+    showMenuList: '/api/console/home/showMenuList',
+    logout: '/api/console/center/logout'
+};
+
+
 (function ($) {
-    // [2.1] 定义基础常量
-    const constant = {
-        index_body_tab: 'body',
-        index_top_menu: '.into-input input',
-        index_left_menu: '#login',
-        show_userInfo: '#userInfo',
-        index_exit_login: '#logout',
-        index_save_submit: '#saveSubmit',
-        show_nickname: '#nickname',
-        show_menuList: '#showMenuView',
-        show_hui_aside: '.Hui-aside',
-        show_homepageTab: '#showHomepageTab',
-        show_homepage: '.show_iframe',
-        show_password: '#updatePassword',
-        show_user_id: '#id',
-    };
-
-    // [2.2] 定义接口API
-    const api = {
-        userInfo: '/api/console/home/userInfo',
-        isLogin: '/api/console/home/isLogin',
-        updatePassword: '/api/console/center/updatePassword',
-        menuTreeList: '/api/console/home/menuTreeList',
-        logout: '/api/console/center/logout'
-    };
-
     // [2.2] 定义全局事件
     let viewModel = {
         showBodyView: function () {
@@ -68,7 +70,7 @@
                     fix: false, //不固定
                     maxmin: true,
                     shade: 0.4,
-                    title: '查看信息',
+                    title: '主页 | 个人信息',
                     content: html
                 });
                 //
@@ -99,22 +101,61 @@
                 }
                 if (user.status == 1) {
                     $("#status").html("启用");
-                } else if (domain.status == 0) {
+                } else if (user.status == 0) {
                     $("#status").html("禁用");
                 }
             });
         },
         // 展示修改密码信息
         showPasswordView: function () {
-            $(constant.show_password).on("click", function () {
-                let userId = $(constant.show_user_id).val();
-                layer_show('主页 | 修改账户密码', '../view/system/user/password.html?id=' + userId, 450, 550);
-            });
-        },
-        showMenuView: function () {
-            $(constant.show_hui_aside).Huifold({
-                titCell: '.menu_dropdown dl dt',
-                mainCell: '.menu_dropdown dl dd',
+            $(constant.show_updatePassword).on("click", function () {
+                // 定义修改页面ViewCode
+                let html = '<div class="page-container">' +
+                    ' <form class="form form-horizontal" id="showPasswordView">' +
+                    '<div class=" row cl" style="margin-top: 15px;">' +
+                    '<label class="form-label col-xs-5 col-sm-3"><span\n' +
+                    '                    class="c-red">*</span>历史密码：</label>' +
+                    '<div class="formControls col-xs-8 col-sm-9" >' +
+                    '<input type="password" class="input-text" value="" maxlength="20" autocomplete="off" placeholder="" id="password" name="password">' +
+                    '<span class="showpwd" style="position: absolute;right:25px;top:6px;cursor: pointer"><i class="icon Hui-iconfont"></i></span>' +
+                    '</div></div>' +
+                    '<div class=" row cl" style="margin-top: 15px;">' +
+                    '<label class="form-label col-xs-5 col-sm-3"><span\n' +
+                    '                    class="c-red">*</span>用户密码：</label>' +
+                    '<div class="formControls col-xs-8 col-sm-9" >' +
+                    '<input type="password" class="input-text" value="" maxlength="20" autocomplete="off" placeholder="" id="newPassword" name="newPassword">' +
+                    '<span class="showpwd" style="position: absolute;right:25px;top:6px;cursor: pointer"><i class="icon Hui-iconfont"></i></span>' +
+                    '</div></div>' +
+                    '<div class=" row cl" style="margin-top: 15px;">' +
+                    '<label class="form-label col-xs-5 col-sm-3"><span\n' +
+                    '                    class="c-red">*</span>确认密码：</label>' +
+                    '<div class="formControls col-xs-8 col-sm-9" >' +
+                    '<input type="password" class="input-text" value="" maxlength="20" autocomplete="off" placeholder="" id="confirmPassword" name="confirmPassword">' +
+                    '<span class="showpwd" style="position: absolute;right:25px;top:6px;cursor: pointer"><i class="icon Hui-iconfont"></i></span>' +
+                    '</div></div>' +
+                    '<div class="row cl" style="margin-top: 15px;">' +
+                    '<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">' +
+                    '<button onClick="updatePassword();" class="btn btn-primary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存</button>' +
+                    '<button onClick="layer.closeAll();" class="btn btn-default radius" style="margin-left:20px" type="button"><i class="Hui-iconfont">&#xe66b;</i>&nbsp;&nbsp;取消&nbsp;&nbsp;</button>' +
+                    '</div></div>' +
+                    '</form></div>';
+                layer.open({
+                    type: 1,
+                    area: ['480px', '300px'],
+                    fix: false, //不固定
+                    maxmin: true,
+                    shade: 0.4,
+                    title: '主页 | 修改密码 ',
+                    content: html
+                });
+                $('.showpwd').hover(function () {
+                    $(this).siblings('.input-text').attr('type', 'text');
+                }, function () {
+                    $(this).siblings('.input-text').attr('type', 'password');
+                });
+
+                //let userId = $(constant.show_user_id).val();
+                //layer_show('修改账户密码', '../view/system/user/password.html?id=' + userId, 450, 550);
             });
         }
     };
@@ -144,40 +185,36 @@
                 }
             });
         },
-        saveSubmit: function () {
-            let password = $("#password").val();
-            let confirmPassword = $("#password1").val();
-            if (password == "") {
-                layer.alert("密码不能为空");
-                return false;
-            } else if (password != confirmPassword) {
-                layer.alert("两次密码不一致");
-                return false;
-            } else {
-                $.post(utils.passportBaseUrl + api.updatePassword, {
-                    password: password,
-                    confirmPassword: confirmPassword
-                }, function (data) {
-                    if (data.code == "200") {
-                        layer.alert("修改成功,请重新登陆", function () {
-                            layer.closeAll();
-                        });
-                    } else {
-                        layer.alert(data.message);
-                    }
-                });
-            }
-        },
         showMenuTreeList: function () {
-
-        },
-        logout: function () {
-            $.post(utils.passportBaseUrl + api.logout, {
-                token: window.localStorage.getItem('web_login_token')
-            }, function (data) {
+            $.post(utils.consoleBaseUrl + api.showMenuList, function (data) {
                 if ("200" == data.code) {
-                    top.location.href = '../view/login.html?v=' + data.timestamp;
-                    window.localStorage.clear();
+                    // 设置账户昵称
+                    console.info(JSON.stringify(data.result.menuList));
+                    let menuList = data.result.menuList;
+                    let content = '';
+                    $(constant.show_menuList).empty();
+                    if (menuList.length > 0) {
+                        // 循环遍历父级菜单设置
+                        $.each(menuList, function (index, parentItem) {
+                            content += '<dl id="menu-article">';
+                            content += '<dt><i class="Hui-iconfont">' + parentItem.style + '</i> ' + parentItem.name + '<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>';
+                            content += '<dd><ul>';
+                            // 循环遍历二级菜单设置
+                            if (parentItem.childMenuList != null) {
+                               let childMenuList = parentItem.childMenuList;
+                                $.each(childMenuList, function (index, childItem) {
+                                    content += '<li><a data-href="' + childItem.event + '?menuId=' + childItem.id + '&v=' + data.timestamp + '" data-title="' + childItem.name + '" href="javascript:void(0)">' ;
+                                    content += '<i class="Hui-iconfont">' + childItem.style + '</i>&nbsp;' + childItem.name + '</a></li>';
+                                });
+                            }
+                            content += '</ul></dd></dl>';
+                        });
+                        $(constant.show_menuList).append(content);
+                        $(constant.show_hui_aside).Huifold({
+                            titCell: '.menu_dropdown dl dt',
+                            mainCell: '.menu_dropdown dl dd',
+                        });
+                    }
                 } else {
                     layer.alert(data.message);
                 }
@@ -189,15 +226,12 @@
     let index = {
         init: function () {
             bindEvent.userInfo();
-            bindEvent.saveSubmit();
             bindEvent.showMenuTreeList();
-            bindEvent.logout();
         },
         mounted: function () {
             viewModel.showBodyView();
             viewModel.showUserView();
             viewModel.showPasswordView();
-            viewModel.showMenuView();
         }
     };
     // [2.4] 函数调用
@@ -206,3 +240,25 @@
         index.mounted();
     });
 })(jQuery);
+
+
+// 退出登录操作
+$(constant.show_logout).on("click", function () {
+    $.post(utils.passportBaseUrl + api.logout, {
+        token: window.localStorage.getItem('web_login_token')
+    }, function (data) {
+        if ("200" == data.code) {
+            window.location.href = '../view/login.html?v=' + data.timestamp;
+            window.localStorage.clear();
+        } else {
+            layer.alert(data.message);
+        }
+    });
+});
+
+function updatePassword() {
+
+}
+
+
+

@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
-    <meta http-equiv="refresh" content="20">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
@@ -38,10 +37,10 @@
                             <li><a href="javascript:;" id="userInfo">
                                 <i class="Hui-iconfont" style="font-size:18px">&#xe705;</i>&nbsp;个人信息</a>
                             </li>
-                            <li><a href="javascript:;" id="updatePassword">
+                            <li><a href="javascript:;" id="showUpdatePassword">
                                 <i class="Hui-iconfont" style="font-size:18px">&#xe60e;</i>&nbsp;修改密码</a>
                             </li>
-                            <li><a href="javascript:;" onclick="logout();">
+                            <li><a href="javascript:;" id="logout">
                                 <i class="Hui-iconfont" style="font-size:18px">&#xe6f7;</i>&nbsp;退出登录</a>
                             </li>
                         </ul>
@@ -71,7 +70,7 @@
     </div>
 </header>
 <aside class="Hui-aside">
-    <div class="menu_dropdown bk_2" id="showMenuView"> <!--查询后台加载菜单列表--></div>
+    <div class="menu_dropdown bk_2" id="menuTreeList"> <!--查询后台加载菜单列表--></div>
 </aside>
 <div class="dislpayArrow hidden-xs">
     <a class="pngfix" href="javascript:void(0);" id="cebian" onClick="displaynavbar(this)"></a></div>
@@ -96,7 +95,7 @@
         </div>
     </div>
     <div id="iframe_box" class="Hui-article">
-        <div class="show_iframe">
+        <div class="show_iframe" >
             <div style="display:none" class="loading"></div>
             <!--            <div style="display:none" class="loading"></div>
                         <iframe scrolling="yes" frameborder="0" src="../view/welcome.html?v=0001"></iframe>-->

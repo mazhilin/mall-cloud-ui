@@ -1,24 +1,24 @@
-// [1].登录主页swiper轮播
+// 登录主页swiper轮播
 let swiper = new Swiper('.swiper-container', {
     autoplay: 3000,
     loop: true,
     speed: 1000,
     effect: 'fade'
 });
-// [2].定义全局加载函数
+// 定义基础常量
+const constant = {
+    login_form: '.into-input input',
+    login_button: '#login',
+    login_auto: '#checkbox-id',
+};
+// 定义接口API
+const api = {
+    login: '/api/console/center/login'
+};
+
+// 定义全局加载函数
 (function ($) {
-    // [2.1] 定义基础常量
-    const constant = {
-        login_form: '.into-input input',
-        login_button: '#login',
-        login_auto: '#checkbox-id',
-    };
-    // [2.2] 定义接口API
-    const api = {
-        consoleLogin: '/api/console/center/login',
-        checkLogin: '/api/console/home/isLogin',
-    };
-    // [2.2] 定义全局事件
+    //  定义全局事件
     let viewModel = {
         //获取焦点时
         focusOnSet: function () {
@@ -43,9 +43,9 @@ let swiper = new Swiper('.swiper-container', {
             });
         }
     };
-    // [2.3] 定义绑定事件函数
+    //  定义绑定事件函数
     let bindEvent = {
-        bindLogin: function () {
+        login: function () {
             $(constant.login_button).on("click", function () {
                 let account = $("input[name='account']").val();
                 let password = $.md5($("input[name='password']").val());
@@ -63,7 +63,7 @@ let swiper = new Swiper('.swiper-container', {
                 }
                 $.ajax({
                     type: 'post',
-                    url: utils.passportBaseUrl + api.consoleLogin,
+                    url: utils.passportBaseUrl + api.login,
                     data: {account: account, password: password, auto: auto},
                     dataType: 'json',
                     error: function (data) {
@@ -74,45 +74,28 @@ let swiper = new Swiper('.swiper-container', {
                         if (data.code == "500") {
                             layer.alert(data.message);
                         } else if (data.code == "200") {
-                            window.localStorage.setItem("web_login_token",data.result.web_login_token)
+                            window.localStorage.setItem("adminUser", JSON.stringify(data.result.adminUser));
+                            window.localStorage.setItem("web_login_token", data.result.web_login_token);
                             window.location.href = "../view/index.html?v=" + data.timestamp;
                         }
                     }
                 });
             });
-        },
-        checkLogin: function () {
-            $.ajax({
-                type: 'post',
-                url: utils.consoleBaseUrl + api.checkLogin,
-                dataType: 'json',
-                success: function (data) {
-                    if ("200" == data.code) {
-                        top.window.location.href = "../view/index.html?v=" + response.timestamp;
-                    } else if (data.code == "500") {
-                        layer.alert(data.message);
-                    }
-                }, error: function (data) {
-                    console.log(data);
-                },
-            });
         }
     };
 
-    // [2.3] 定义全局初始化函数
+    // 定义全局初始化函数
     let index = {
         init: function () {
+            bindEvent.login();
+        },
+        mounted: function () {
             viewModel.focusOnSet();
             viewModel.focusOffset();
             viewModel.keyboard();
-            bindEvent.checkLogin();
-            bindEvent.bindLogin();
-        },
-        mounted: function () {
-            viewModel.keyboard();
         }
     };
-    // [2.4] 函数调用
+    // 函数调用
     $(function () {
         index.init();
         index.mounted();
