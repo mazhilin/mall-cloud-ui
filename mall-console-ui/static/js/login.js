@@ -11,6 +11,7 @@ const constant = {
     login_button: '#login',
     login_auto: '#checkbox-id',
 };
+
 // 定义接口API
 const api = {
     login: '/api/console/center/login'
@@ -74,8 +75,8 @@ const api = {
                         if (data.code == "500") {
                             layer.alert(data.message);
                         } else if (data.code == "200") {
-                            window.localStorage.setItem("adminUser", JSON.stringify(data.result.adminUser));
-                            window.localStorage.setItem("web_login_token", data.result.web_login_token);
+                            window.localStorage.setItem(cache.web_view_user, JSON.stringify(data.result.adminUser));
+                            window.localStorage.setItem(cache.web_view_token, data.result.web_login_token);
                             window.location.href = "../view/index.html?v=" + data.timestamp;
                         }
                     }

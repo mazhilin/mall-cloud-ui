@@ -15,7 +15,6 @@ const constant = {
     show_user_id: '#id',
     show_logout: '#logout'
 };
-
 // [2.2] 定义接口API
 const api = {
     userInfo: '/api/console/home/userInfo',
@@ -186,39 +185,67 @@ const api = {
             });
         },
         showMenuTreeList: function () {
-            $.post(utils.consoleBaseUrl + api.showMenuList, function (data) {
-                if ("200" == data.code) {
-                    // 设置账户昵称
-                    console.info(JSON.stringify(data.result.menuList));
-                    let menuList = data.result.menuList;
-                    let content = '';
-                    $(constant.show_menuList).empty();
-                    if (menuList.length > 0) {
-                        // 循环遍历父级菜单设置
-                        $.each(menuList, function (index, parentItem) {
-                            content += '<dl id="menu-article">';
-                            content += '<dt><i class="Hui-iconfont">' + parentItem.style + '</i> ' + parentItem.name + '<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>';
-                            content += '<dd><ul>';
-                            // 循环遍历二级菜单设置
-                            if (parentItem.childMenuList != null) {
-                               let childMenuList = parentItem.childMenuList;
-                                $.each(childMenuList, function (index, childItem) {
-                                    content += '<li><a data-href="' + childItem.event + '?menuId=' + childItem.id + '&v=' + data.timestamp + '" data-title="' + childItem.name + '" href="javascript:void(0)">' ;
-                                    content += '<i class="Hui-iconfont">' + childItem.style + '</i>&nbsp;' + childItem.name + '</a></li>';
-                                });
-                            }
-                            content += '</ul></dd></dl>';
-                        });
-                        $(constant.show_menuList).append(content);
-                        $(constant.show_hui_aside).Huifold({
-                            titCell: '.menu_dropdown dl dt',
-                            mainCell: '.menu_dropdown dl dd',
+            let menuCacheList = JSON.parse(window.localStorage.getItem(cache.web_view_menu));
+            if (menuCacheList != null){
+                let content = '';
+                $(constant.show_menuList).empty();
+                // 循环遍历父级菜单设置
+                $.each(menuCacheList, function (index, parentItem) {
+                    content += '<dl id="menu-article">';
+                    content += '<dt><i class="Hui-iconfont">' + parentItem.style + '</i> ' + parentItem.name + '<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>';
+                    content += '<dd><ul>';
+                    // 循环遍历二级菜单设置
+                    if (parentItem.childMenuList != null) {
+                        let childMenuList = parentItem.childMenuList;
+                        $.each(childMenuList, function (index, childItem) {
+                            let timestamp = Date.parse(new Date());
+                            content += '<li><a data-href="' + childItem.event + '?menuId=' + childItem.id + '&v=' + timestamp + '" data-title="' + childItem.name + '" href="javascript:void(0)">';
+                            content += '<i class="Hui-iconfont">' + childItem.style + '</i>&nbsp;' + childItem.name + '</a></li>';
                         });
                     }
-                } else {
-                    layer.alert(data.message);
-                }
-            });
+                    content += '</ul></dd></dl>';
+                });
+                $(constant.show_menuList).append(content);
+                $(constant.show_hui_aside).Huifold({
+                    titCell: '.menu_dropdown dl dt',
+                    mainCell: '.menu_dropdown dl dd',
+                });
+            }else {
+                $.post(utils.consoleBaseUrl + api.showMenuList, function (data) {
+                    if ("200" == data.code) {
+                        // 设置账户昵称
+                        console.info(JSON.stringify(data.result.menuList));
+                        let menuList = data.result.menuList;
+                        window.localStorage.setItem(cache.web_view_menu,JSON.stringify(data.result.menuList));
+                        let content = '';
+                        $(constant.show_menuList).empty();
+                        if (menuList.length > 0) {
+                            // 循环遍历父级菜单设置
+                            $.each(menuList, function (index, parentItem) {
+                                content += '<dl id="menu-article">';
+                                content += '<dt><i class="Hui-iconfont">' + parentItem.style + '</i> ' + parentItem.name + '<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>';
+                                content += '<dd><ul>';
+                                // 循环遍历二级菜单设置
+                                if (parentItem.childMenuList != null) {
+                                    let childMenuList = parentItem.childMenuList;
+                                    $.each(childMenuList, function (index, childItem) {
+                                        content += '<li><a data-href="' + childItem.event + '?menuId=' + childItem.id + '&v=' + data.timestamp + '" data-title="' + childItem.name + '" href="javascript:void(0)">';
+                                        content += '<i class="Hui-iconfont">' + childItem.style + '</i>&nbsp;' + childItem.name + '</a></li>';
+                                    });
+                                }
+                                content += '</ul></dd></dl>';
+                            });
+                            $(constant.show_menuList).append(content);
+                            $(constant.show_hui_aside).Huifold({
+                                titCell: '.menu_dropdown dl dt',
+                                mainCell: '.menu_dropdown dl dd',
+                            });
+                        }
+                    } else {
+                        layer.alert(data.message);
+                    }
+                });
+            }
         }
     };
 

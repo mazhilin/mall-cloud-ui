@@ -1,3 +1,9 @@
+// 定义数据缓冲
+const cache = {
+    web_view_user: 'adminUser',
+    web_view_menu: 'menuList',
+    web_view_token: 'web_login_token',
+};
 const utils = {
     //baseUrl: 'http://47.104.133.96/shaker_test',
     passportBaseUrl: 'http://127.0.0.1:9001/passport',
@@ -10,7 +16,7 @@ const utils = {
         return window.localStorage.getItem('updateBy');
     },
     isChecked: function () {
-        let token = window.localStorage.getItem('web_login_token');
+        let token = window.localStorage.getItem(cache.web_view_token);
         if (token) {
             return token;
         } else {
