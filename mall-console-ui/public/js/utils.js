@@ -25,11 +25,27 @@ const utils = {
     },
     //baseUrl: '',
     //获取url链接参数
-    getQueryString: function (name) {
+    getDeliverPage: function (name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
         var r = window.location.search.substr(1).match(reg);
-        if(r != null) return r[2];
+        if (r != null) return r[2];
         return '';
+    },
+    //[4]避免显示undefined
+    excludeUndefined(value) {
+        if (value === 0) {
+            return 0;
+        }
+        if ((value == undefined || value == "") && value != 0) {
+            return "";
+        } else {
+            return value;
+        }
+        if ((typeof (value) == "undefined" || typeof (value) == null || typeof (value) == "number")) {
+            return '';
+        } else {
+            return value;
+        }
     },
     // 转换成2018年9月27号 11:00:00
     formatTime: function (t) {
@@ -40,7 +56,7 @@ const utils = {
             h = ('0' + date.getHours()).slice(-2),
             mi = ('0' + date.getMinutes()).slice(-2),
             s = ('0' + date.getSeconds()).slice(-2);
-        return (y + '年' + m + '月'+ d + '日' + h + ':' + mi + ':' + s)
+        return (y + '年' + m + '月' + d + '日' + h + ':' + mi + ':' + s)
     },
     formatTime2: function (t) {
         var date = new Date(t);

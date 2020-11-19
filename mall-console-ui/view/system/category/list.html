@@ -67,33 +67,22 @@
         </button>
     </div>
     <div class="cl pd-5 bg-1 bk-gray mt-20"><span class="l">
-        <a href="javascript:;" onclick="member_add('新增员工','user_add.html','','510')"
+        <a href="javascript:;" onclick="add('新增 | 系统分类','add.html','','510')"
            class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a>
-        <a href="javascript:;" id="sendFansiCoin" style="display: none" onclick="sendFansiCoin();"
-           class="btn btn-primary radius">
-				<i class="Hui-iconfont">&#xe642;</i> 分配凡思币
-			</a>
     </span>
         <span class="r">共有数据：<strong><span id="totalCount">0</span></strong> 条</span></div>
     <div class="mt-20">
         <table class="table table-border table-bordered table-bg table-hover table-sort table-responsive">
             <thead>
             <tr class="text-c">
-                <th>选择</th>
-                <th width="">所属组织</th>
-                <th width="">所属部门</th>
-                <th width="100">用户姓名</th>
-                <th width="">用户昵称</th>
-                <th width="">性别</th>
-                <th width="">账户</th>
-                <th width="">邮箱</th>
-                <th width="">电话</th>
-                <th width="">状态</th>
-                <th width="">创建人</th>
-                <th width="">创建时间</th>
-                <th width="">更新人</th>
-                <th width="">更新时间</th>
-                <th width="">操作</th>
+                <th width="20">选择</th>
+                <th width="40">序号</th>
+                <th width="40">分类编码</th>
+                <th width="40">分类名称</th>
+                <th width="40">父级编码</th>
+                <th width="40">父级分类</th>
+                <th width="20">状态</th>
+                <th width="100">操作列表</th>
             </tr>
             </thead>
             <tbody id="bodyHtml">
@@ -109,26 +98,28 @@
     </div>
 </div>
 <!--_footer 作为公共模版分离出去-->
-<script type="text/javascript" src="../../../component/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="../../../component/layer/2.4/layer.js"></script>
-<script type="text/javascript" src="../../../component/h-ui/js/H-ui.min.js"></script>
-<script type="text/javascript" src="../../../component/h-ui.admin/js/H-ui.admin.js"></script>
+<script charset="utf-8" rel="prefetch" src="../../../component/jquery/1.9.1/jquery.min.js"
+        type="text/javascript"></script>
+<script charset="utf-8" rel="prefetch" src="../../../component/layer/2.4/layer.js" type="text/javascript"></script>
+<script charset="utf-8" rel="prefetch" src="../../../component/h-ui/js/H-ui.min.js" type="text/javascript"></script>
+<script charset="utf-8" rel="prefetch" src="../../../component/h-ui.admin/js/H-ui.admin.js"
+        type="text/javascript"></script>
 <!--/_footer 作为公共模版分离出去-->
-
-<!--请在下方写此页面业务相关的脚本-->
-<!--请在下方写此页面业务相关的脚本-->
-<script type="text/javascript" src="../../../component/My97DatePicker/4.8/WdatePicker.js"></script>
-<script type="text/javascript" src="../../../component/datatables/1.10.0/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="../../../component/laypage/1.2/layui.all.js"></script>
-<script type="text/javascript" src="../../../component/lightbox2/2.8.1/js/lightbox.min.js"></script>
-<script type="text/javascript" src="../../../component/layer/2.4/layer.js"></script>
-<script charset="utf-8" src="../../../component/h-ui.admin/js/page.js" type="text/javascript"></script>
-<script charset="utf-8" src="../../../component/laypage/1.2/laypage.js" type="text/javascript"></script>
-<!---->
-<script type="text/javascript" src="../../../component/boostrap/js/bootstrap-select.js"></script>
-<script type="text/javascript" src="../../../component/boostrap/js/i18n/defaults-zh_CN.js"></script>
-<!---->
-<script charset="utf-8" src="../module/js/common/tools/commonTools.js" type="text/javascript"></script>
-<script charset="utf-8" src="../module/js/system/systemUser/systemUserList.js" type="text/javascript"></script>
+<script charset="utf-8" rel="prefetch" src="../../../component/My97DatePicker/4.8/WdatePicker.js"
+        type="text/javascript"></script>
+<script charset="utf-8" rel="prefetch" src="../../../component/datatables/1.10.0/jquery.dataTables.min.js"
+        type="text/javascript"></script>
+<script charset="utf-8" rel="prefetch" src="../../../component/lightbox/2.8.1/js/lightbox.min.js"
+        type="text/javascript"></script>
+<script charset="utf-8" rel="prefetch" src="../../../component/boostrap/js/bootstrap-select.js"
+        type="text/javascript"></script>
+<script charset="utf-8" rel="prefetch" src="../../../component/laypage/1.2/layui.js" type="text/javascript"></script>
+<script charset="utf-8" rel="prefetch" src="../../../component/laypage/1.2/laypage.js" type="text/javascript"></script>
+<script charset="utf-8" rel="prefetch" src="../../../component/boostrap/js/i18n/defaults-zh_CN.js"
+        type="text/javascript"></script>
+<script charset="utf-8" rel="prefetch" src="../../../public/js/utils.js"
+        type="text/javascript"></script>
+<script charset="utf-8" rel="prefetch" src="../../../static/js/system/category/list.js"
+        type="text/javascript"></script>
 </body>
 </html>
