@@ -18,16 +18,16 @@ $(function () {
 function searchList() {
     let pageSize = $('#pageSize').val();
     let pageLimit = $("#pageLimit").val();
-    let name = encodeURI(encodeURI($("#name").val()));
+    let name = encodeURI($("#name").val());
     let status = $("#status").val();
-    let account = encodeURI(encodeURI($("#account").val()));
-    let phone = encodeURI(encodeURI($("#phone").val()));
+    let account = $("#account").val();
+    let mobile = $("#mobile").val();
     window.location.href = "list.html?&pageSize=" + pageSize +
         '&pageLimit=' + pageLimit +
         '&name=' + name +
         '&status=' + status +
         '&account=' + account +
-        '&phone=' + phone;
+        '&mobile=' + mobile;
 }
 
 /**定义全局变量-laypage*/
@@ -55,7 +55,7 @@ function refreshPage() {
 function refresh() {
     $("#status").val("");
     $("#account").val("");
-    $("#phone").val("");
+    $("#mobile").val("");
     $("#name").val("");
     searchList();
 }
@@ -81,20 +81,20 @@ function loadPageResultList() {
         $('#pageLimit').val(utils.getDeliverPage("pageLimit"));
     }
     if (utils.getDeliverPage("name") != null) {
-        $('#name').val(decodeURI(utils.getDeliverPage("name")));
+        $('#name').val(utils.getDeliverPage("name"));
     }
     if (utils.getDeliverPage("account") != null) {
-        $('#name').val(decodeURI(utils.getDeliverPage("account")));
+        $('#account').val(utils.getDeliverPage("account"));
     }
     if (utils.getDeliverPage("mobile") != null) {
-        $('#mobile').val(decodeURI(utils.getDeliverPage("mobile")));
+        $('#mobile').val(utils.getDeliverPage("mobile"));
     }
     let pageSize = $("#pageSize").val();
     let pageLimit = $("#pageLimit").val();
     let status = utils.getDeliverPage("status");
-    let name = $("#name").val();
-    let account = $("#account").val();
-    let mobile = $("#mobile").val();
+    let name = utils.getDeliverPage("name");
+    let account = utils.getDeliverPage("account");
+    let mobile = utils.getDeliverPage("mobile");
     $("#bodyHtml").empty();
     $.post(utils.passportBaseUrl + api.list,
         {
@@ -108,11 +108,12 @@ function loadPageResultList() {
             if (200 == data.code) {
                 let html = "";
                 let resultList = data.result.list;
+                let orderSortNum = 0;
                 if (resultList.length > 0) {
                     $.each(resultList, function (index, item) {
-                        let orderSortNum = (pageSize - 1) * pageLimit + index + 1;
+                        orderSortNum = (pageSize - 1) * pageLimit + index + 1;
                         html += `<tr class="text-c"><td><input name="param_ids" value="${item.id}"  data-attribute="${item.name}" data-id="${item.id}" data-status="${item.status}" type="checkbox"></td>`;
-                        html += '<td class="list-index">' + orderSortNum + '</td>';
+                        html += '<td class="list-index">' + utils.excludeUndefined(orderSortNum) + '</td>';
                         html += '<th width="">' + utils.excludeUndefined(item.account) + '</th>';
                         html += '<th width="">' + utils.excludeUndefined(item.name) + '</th>';
                         if (0 == item.type || 1 == item.type) {
@@ -190,9 +191,9 @@ function loadPageResultList() {
 function reloadPageResultList(pageSize, pageLimit) {
     YDUI.dialog.loading.open('正在加载....');
     let status = $("#status").val();
-    let name = encodeURI(encodeURI($("#name").val()));
-    let account = encodeURI(encodeURI($("#account").val()));
-    let mobile = encodeURI(encodeURI($("#mobile").val()));
+    let name = $("#name").val();
+    let account = $("#account").val();
+    let mobile = $("#mobile").val();
     $("#bodyHtml").empty();
     $.post(utils.passportBaseUrl + api.list,
         {
@@ -206,11 +207,12 @@ function reloadPageResultList(pageSize, pageLimit) {
             if (200 == data.code) {
                 let html = "";
                 let resultList = data.result.list;
+                let orderSortNum = 0;
                 if (resultList.length > 0) {
                     $.each(resultList, function (index, item) {
-                        let orderSortNum = (pageSize - 1) * pageLimit + index + 1;
+                        orderSortNum = (pageSize - 1) * pageLimit + index + 1;
                         html += `<tr class="text-c"><td><input name="param_ids" value="${item.id}"  data-attribute="${item.name}" data-id="${item.id}" data-status="${item.status}" type="checkbox"></td>`;
-                        html += '<td class="list-index">' + orderSortNum + '</td>';
+                        html += '<td class="list-index">' + utils.excludeUndefined(orderSortNum) + '</td>';
                         html += '<th width="">' + utils.excludeUndefined(item.account) + '</th>';
                         html += '<th width="">' + utils.excludeUndefined(item.name) + '</th>';
                         if (0 == item.type || 1 == item.type) {
