@@ -3,7 +3,7 @@ const constant = {};
 // [2.2] 定义接口API
 const api = {
     /**分页查询用户列表*/
-    list: '/api/config/center/list',
+    list: '/api/user/center/list',
 };
 
 // [2.3] 封装页面查询事件按钮
@@ -46,7 +46,8 @@ function refreshPage() {
 /**封装刷新页面数据函数*/
 function refresh() {
     $("#status").val("");
-    $("#scope").val("");
+    $("#account").val("");
+    $("#phone").val("");
     $("#name").val("");
     searchList();
 }
@@ -81,22 +82,17 @@ function operation() {
             if (utils.getDeliverPage("name") != null) {
                 $('#name').val(utils.getDeliverPage("name"));
             }
-            if (utils.getDeliverPage("scope") != null) {
-                $('#scope').val(utils.getDeliverPage("scope"));
-            }
             let pageSize = $("#pageSize").val();
             let pageLimit = $("#pageLimit").val();
             let status = utils.getDeliverPage("status");
             let name = utils.getDeliverPage("name");
-            let scope = utils.getDeliverPage("scope");
             $("#bodyHtml").empty();
             $.post(utils.passportBaseUrl + api.list,
                 {
                     pageSize: pageSize,
                     pageLimit: pageLimit,
                     status: status,
-                    name: name,
-                    scope:scope
+                    name: name
                 }, function (data) {
                     if (200 == data.code) {
                         let html = "";
@@ -109,14 +105,9 @@ function operation() {
                                 html += '<th width="">' + utils.excludeUndefined(item.code) + '</th>';
                                 html += '<th width="">' + utils.excludeUndefined(item.name) + '</th>';
                                 html += '<th width="">' + utils.excludeUndefined(item.message) + '</th>';
+                                html += '<th width="">' + utils.excludeUndefined(item.email) + '</th>';
                                 html += '<th width="">' + utils.excludeUndefined(item.value) + '</th>';
-                                if (0==item.scope){
-                                    html += '<td class="td-status"><span class="label label-defaunt radius">后端平台</span></td>';
-                                }else if(1==item.scope){
-                                    html += '<td class="td-status"><span class="label label-defaunt radius">APP平台</span></td>';
-                                }else {
-                                    html += '<td class="td-status"><span class="label label-defaunt radius">SMR平台</span></td>';
-                                }
+                                html += '<th width="">' + utils.excludeUndefined(item.scope) + '</th>';
                                 if (0 == item.status) {
                                     html += '<td class="td-status"><span class="label label-defaunt radius">禁用</span></td>';
                                 } else {
@@ -175,15 +166,13 @@ function operation() {
             YDUI.dialog.loading.open('正在加载....');
             let status = utils.getDeliverPage("status");
             let name = utils.getDeliverPage("name");
-            let scope = utils.getDeliverPage("scope");
             $("#bodyHtml").empty();
             $.post(utils.passportBaseUrl + api.list,
                 {
                     pageSize: pageSize,
                     pageLimit: pageLimit,
                     status: status,
-                    name: name,
-                    scope:scope
+                    name: name
                 }, function (data) {
                     if (200 == data.code) {
                         let html = "";
@@ -196,14 +185,9 @@ function operation() {
                                 html += '<th width="">' + utils.excludeUndefined(item.code) + '</th>';
                                 html += '<th width="">' + utils.excludeUndefined(item.name) + '</th>';
                                 html += '<th width="">' + utils.excludeUndefined(item.message) + '</th>';
+                                html += '<th width="">' + utils.excludeUndefined(item.email) + '</th>';
                                 html += '<th width="">' + utils.excludeUndefined(item.value) + '</th>';
-                                if (0==item.scope){
-                                    html += '<td class="td-status"><span class="label label-defaunt radius">后端平台</span></td>';
-                                }else if(1==item.scope){
-                                    html += '<td class="td-status"><span class="label label-defaunt radius">APP平台</span></td>';
-                                }else {
-                                    html += '<td class="td-status"><span class="label label-defaunt radius">SMR平台</span></td>';
-                                }
+                                html += '<th width="">' + utils.excludeUndefined(item.scope) + '</th>';
                                 if (0 == item.status) {
                                     html += '<td class="td-status"><span class="label label-defaunt radius">禁用</span></td>';
                                 } else {

@@ -3,7 +3,7 @@ const constant = {};
 // [2.2] 定义接口API
 const api = {
     /**分页查询用户列表*/
-    list: '/api/config/center/list',
+    list: '/api/console/role/list',
 };
 
 // [2.3] 封装页面查询事件按钮
@@ -12,14 +12,12 @@ function searchList() {
     let pageLimit = $("#pageLimit").val();
     let name = encodeURI(encodeURI($("#name").val()));
     let status = $("#status").val();
-    let account = encodeURI(encodeURI($("#account").val()));
-    let phone = encodeURI(encodeURI($("#phone").val()));
+    let scope = encodeURI(encodeURI($("#scope").val()));
     window.location.href = "list.html?&pageSize=" + pageSize +
         '&pageLimit=' + pageLimit +
         '&name=' + name +
         '&status=' + status +
-        '&account=' + account +
-        '&phone=' + phone;
+        '&scope=' + scope;
 }
 
 /**定义全局变量-laypage*/
@@ -72,31 +70,22 @@ function operation() {
     let bindEvent = {
         list: function () {
             YDUI.dialog.loading.open('正在加载....');
-            if (utils.getDeliverPage("pageSize") != null) {
-                $('#pageSize').val(utils.getDeliverPage("pageSize"));
-            }
-            if (utils.getDeliverPage("pageLimit") != null) {
-                $('#pageLimit').val(utils.getDeliverPage("pageLimit"));
-            }
             if (utils.getDeliverPage("name") != null) {
                 $('#name').val(utils.getDeliverPage("name"));
             }
-            if (utils.getDeliverPage("scope") != null) {
-                $('#scope').val(utils.getDeliverPage("scope"));
-            }
             let pageSize = $("#pageSize").val();
             let pageLimit = $("#pageLimit").val();
-            let status = utils.getDeliverPage("status");
-            let name = utils.getDeliverPage("name");
-            let scope = utils.getDeliverPage("scope");
+            let status = $('#status').val();
+            let name = utils.getDeliverPage($('#name').val());
+            let scope = $('#scope').val();
             $("#bodyHtml").empty();
-            $.post(utils.passportBaseUrl + api.list,
+            $.post(utils.consoleBaseUrl + api.list,
                 {
                     pageSize: pageSize,
                     pageLimit: pageLimit,
                     status: status,
                     name: name,
-                    scope:scope
+                    scope: scope
                 }, function (data) {
                     if (200 == data.code) {
                         let html = "";
@@ -106,15 +95,14 @@ function operation() {
                                 let orderSortNum = (pageSize - 1) * pageLimit + index + 1;
                                 html += `<tr class="text-c"><td><input name="param_ids" value="${item.id}"  data-attribute="${item.name}" data-id="${item.id}" data-status="${item.status}" type="checkbox"></td>`;
                                 html += '<td class="list-index">' + orderSortNum + '</td>';
-                                html += '<th width="">' + utils.excludeUndefined(item.code) + '</th>';
                                 html += '<th width="">' + utils.excludeUndefined(item.name) + '</th>';
+                                html += '<th width="">' + utils.excludeUndefined(item.code) + '</th>';
                                 html += '<th width="">' + utils.excludeUndefined(item.message) + '</th>';
-                                html += '<th width="">' + utils.excludeUndefined(item.value) + '</th>';
-                                if (0==item.scope){
+                                if (0 == item.scope) {
                                     html += '<td class="td-status"><span class="label label-defaunt radius">后端平台</span></td>';
-                                }else if(1==item.scope){
+                                } else if (1 == item.scope) {
                                     html += '<td class="td-status"><span class="label label-defaunt radius">APP平台</span></td>';
-                                }else {
+                                } else {
                                     html += '<td class="td-status"><span class="label label-defaunt radius">SMR平台</span></td>';
                                 }
                                 if (0 == item.status) {
@@ -173,17 +161,17 @@ function operation() {
         },
         loadList: function (pageSize, pageLimit) {
             YDUI.dialog.loading.open('正在加载....');
-            let status = utils.getDeliverPage("status");
-            let name = utils.getDeliverPage("name");
-            let scope = utils.getDeliverPage("scope");
+            let status = $('#status').val();
+            let name = $('#name').val();
+            let scope = $('#scope').val();
             $("#bodyHtml").empty();
-            $.post(utils.passportBaseUrl + api.list,
+            $.post(utils.consoleBaseUrl + api.list,
                 {
                     pageSize: pageSize,
                     pageLimit: pageLimit,
                     status: status,
                     name: name,
-                    scope:scope
+                    scope: scope
                 }, function (data) {
                     if (200 == data.code) {
                         let html = "";
@@ -193,15 +181,14 @@ function operation() {
                                 let orderSortNum = (pageSize - 1) * pageLimit + index + 1;
                                 html += `<tr class="text-c"><td><input name="param_ids" value="${item.id}"  data-attribute="${item.name}" data-id="${item.id}" data-status="${item.status}" type="checkbox"></td>`;
                                 html += '<td class="list-index">' + orderSortNum + '</td>';
-                                html += '<th width="">' + utils.excludeUndefined(item.code) + '</th>';
                                 html += '<th width="">' + utils.excludeUndefined(item.name) + '</th>';
+                                html += '<th width="">' + utils.excludeUndefined(item.code) + '</th>';
                                 html += '<th width="">' + utils.excludeUndefined(item.message) + '</th>';
-                                html += '<th width="">' + utils.excludeUndefined(item.value) + '</th>';
-                                if (0==item.scope){
+                                if (0 == item.scope) {
                                     html += '<td class="td-status"><span class="label label-defaunt radius">后端平台</span></td>';
-                                }else if(1==item.scope){
+                                } else if (1 == item.scope) {
                                     html += '<td class="td-status"><span class="label label-defaunt radius">APP平台</span></td>';
-                                }else {
+                                } else {
                                     html += '<td class="td-status"><span class="label label-defaunt radius">SMR平台</span></td>';
                                 }
                                 if (0 == item.status) {
@@ -215,14 +202,14 @@ function operation() {
                                 } else {
                                     html += '<a style="text-decoration:none" onClick="open( this ,\'' + item.id + '\',\'' + item.status + '\')" href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe60e;</i></a>';
                                 }
-                                html += '&ensp;<a style="text-decoration:none" onClick="edit(this,\'' + item.id + '\')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe60c;</i></a>';
+                                html += '<a style="text-decoration:none" onClick="edit(this,\'' + item.id + '\')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe60c;</i></a>';
                                 html += '&ensp;<a style="text-decoration:none" onClick="reset(this,\'' + item.id + '\')" href="javascript:;" title="修改"><i class="Hui-iconfont">&#xe63f;</i></a>';
-                                html += '&ensp;<a style="text-decoration:none" onClick="remove(this,\'' + item.id + '\')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe609;</i></a>';
+                                html += '<a style="text-decoration:none" onClick="remove(this,\'' + item.id + '\')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe609;</i></a>';
                                 html += '</td></tr>';
                             });
                         }
                         //共有数据
-                        $("#pageCount").html(data.result.total);
+                        $("#pageCount").html(data.result.pageCount);
                         //显示本页共多少条
                         $("#allData").html(data.result.list.length);
                         //显示开始条数

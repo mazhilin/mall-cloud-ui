@@ -44,19 +44,34 @@
 </head>
 <body>
 <nav class="breadcrumb">
-    <i class="Hui-iconfont">&#xe67f;</i> 首页
-    <span class="c-gray en">&gt;</span> <i class="Hui-iconfont">&#xe61d;</i> 系统管理<span
-        class="c-gray en">&gt;</span> <i class="Hui-iconfont">&#xe60d; </i>用户管理
+    <i class="Hui-iconfont">&#xe67f;</i>&nbsp;首页
+    <span class="c-gray en">&gt;</span> <i class="Hui-iconfont">&#xe61d;</i>&nbsp;系统管理<span
+        class="c-gray en">&gt;</span> <i class="Hui-iconfont">&#xe6c6;</i>&nbsp;参数管理
     <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
        href="javascript:;" onclick="refreshPage()" title="刷新">
         <i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
     <div class="text-c">
-        所属组织：
-        <select id="organizationId" class="selectpicker" data-width="200px" data-live-search="true"
-                onchange="searchList();"></select>
-        名称：
-        <input type="text" name="searchKey" id="searchKey" placeholder="名称" style="width:250px" class="input-text"
+        &nbsp;状态:
+        <span class="select-box inline">
+            <select class="select" id="status" onchange="if (event.keyCode==13) {searchList();}" value="">
+                <option selected value="">全部</option>
+                <option value="0">停用</option>
+                <option value="1">启用</option>
+            </select>
+		</span>
+        &nbsp;作用域:
+        <span class="select-box inline">
+            <select class="select" id="scope" onchange="if (event.keyCode==13) {searchList();}" value="">
+                <option selected value="">全部</option>
+                <option value="1">后台平台</option>
+                <option value="2">APP平台</option>
+                <option value="3">SMR平台</option>
+                <option value="4">业务平台</option>
+            </select>
+		</span>
+        &nbsp;名称：
+        <input type="text" name="searchKey" id="searchKey" placeholder="名称" style="width:120px" class="input-text"
                value="" onkeydown="if (event.keyCode===13){searchList();}">
         <button id="searchButton" class="btn btn-secondary radius" type="submit" onClick="searchList()"><i
                 class="Hui-iconfont">&#xe665;</i>
@@ -67,33 +82,23 @@
         </button>
     </div>
     <div class="cl pd-5 bg-1 bk-gray mt-20"><span class="l">
-        <a href="javascript:;" onclick="member_add('新增员工','user_add.html','','510')"
+        <a href="javascript:;" onclick="add('新增 | 系统配置','user_add.html','','510')"
            class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a>
-        <a href="javascript:;" id="sendFansiCoin" style="display: none" onclick="sendFansiCoin();"
-           class="btn btn-primary radius">
-				<i class="Hui-iconfont">&#xe642;</i> 分配凡思币
-			</a>
     </span>
-        <span class="r">共有数据：<strong><span id="totalCount">0</span></strong> 条</span></div>
+        <span class="r">共有数据：<strong><span id="pageCount">0</span></strong> 条</span></div>
     <div class="mt-20">
         <table class="table table-border table-bordered table-bg table-hover table-sort table-responsive">
             <thead>
             <tr class="text-c">
-                <th>选择</th>
-                <th width="">所属组织</th>
-                <th width="">所属部门</th>
-                <th width="100">用户姓名</th>
-                <th width="">用户昵称</th>
-                <th width="">性别</th>
-                <th width="">账户</th>
-                <th width="">邮箱</th>
-                <th width="">电话</th>
-                <th width="">状态</th>
-                <th width="">创建人</th>
-                <th width="">创建时间</th>
-                <th width="">更新人</th>
-                <th width="">更新时间</th>
-                <th width="">操作</th>
+                <th width="20">选择</th>
+                <th width="40">序号</th>
+                <th width="60">配置编码</th>
+                <th width="40">配置名称</th>
+                <th width="40">配置描述</th>
+                <th width="40">配置码值</th>
+                <th width="40">作用域</th>
+                <th width="20">系统状态</th>
+                <th width="80">操作列表</th>
             </tr>
             </thead>
             <tbody id="bodyHtml">
@@ -109,26 +114,25 @@
     </div>
 </div>
 <!--_footer 作为公共模版分离出去-->
-<script type="text/javascript" src="../../../component/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="../../../component/layer/2.4/layer.js"></script>
-<script type="text/javascript" src="../../../component/h-ui/js/H-ui.min.js"></script>
-<script type="text/javascript" src="../../../component/h-ui.admin/js/H-ui.admin.js"></script>
+<script charset="utf-8" rel="prefetch" src="../../../component/jquery/1.9.1/jquery.min.js"
+        type="text/javascript"></script>
+<script charset="utf-8" rel="prefetch" src="../../../component/layer/2.4/layer.js" type="text/javascript"></script>
+<script charset="utf-8" rel="prefetch" src="../../../component/h-ui/js/H-ui.min.js" type="text/javascript"></script>
+<script charset="utf-8" rel="prefetch" src="../../../component/h-ui.admin/js/H-ui.admin.js"
+        type="text/javascript"></script>
 <!--/_footer 作为公共模版分离出去-->
-
-<!--请在下方写此页面业务相关的脚本-->
-<!--请在下方写此页面业务相关的脚本-->
-<script type="text/javascript" src="../../../component/My97DatePicker/4.8/WdatePicker.js"></script>
-<script type="text/javascript" src="../../../component/datatables/1.10.0/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="../../../component/laypage/1.2/layui.all.js"></script>
-<script type="text/javascript" src="../../../component/lightbox2/2.8.1/js/lightbox.min.js"></script>
-<script type="text/javascript" src="../../../component/layer/2.4/layer.js"></script>
+<script charset="utf-8" rel="prefetch" src="../../../component/My97DatePicker/4.8/WdatePicker.js"
+        type="text/javascript"></script>
+<script charset="utf-8" rel="prefetch" src="../../../component/datatables/1.10.0/jquery.dataTables.min.js"
+        type="text/javascript"></script>
 <script charset="utf-8" src="../../../component/h-ui.admin/js/page.js" type="text/javascript"></script>
 <script charset="utf-8" src="../../../component/laypage/1.2/laypage.js" type="text/javascript"></script>
-<!---->
-<script type="text/javascript" src="../../../component/boostrap/js/bootstrap-select.js"></script>
-<script type="text/javascript" src="../../../component/boostrap/js/i18n/defaults-zh_CN.js"></script>
-<!---->
-<script charset="utf-8" src="../module/js/common/tools/commonTools.js" type="text/javascript"></script>
-<script charset="utf-8" src="../module/js/system/systemUser/systemUserList.js" type="text/javascript"></script>
+<script charset="utf-8" rel="prefetch" src="../../../component/layui/layui.all.js" type="text/javascript"></script>
+<script charset="utf-8" src="../../../component/ydui/ydui.js" type="text/javascript"></script>
+<script charset="utf-8" src="../../../component/common/js/common.js" type="text/javascript"></script>
+<script charset="utf-8" rel="prefetch" src="../../../public/js/utils.js"
+        type="text/javascript"></script>
+<script charset="utf-8" rel="prefetch" src="../../../static/js/system/parameter/list.js"
+        type="text/javascript"></script>
 </body>
 </html>

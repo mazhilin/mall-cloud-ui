@@ -76,6 +76,8 @@ const api = {
                             layer.alert(data.message);
                         } else if (data.code == "200") {
                             window.localStorage.setItem(cache.web_view_user, JSON.stringify(data.result.adminUser));
+                            window.localStorage.setItem(cache.web_view_user_id,data.result.adminUser.id);
+                            window.localStorage.setItem(cache.web_view_user, JSON.stringify(data.result.adminUser));
                             window.localStorage.setItem(cache.web_view_token, data.result.web_login_token);
                             window.location.href = "../view/index.html?v=" + data.timestamp;
                         }

@@ -1,6 +1,7 @@
 // 定义数据缓冲
 const cache = {
     web_view_user: 'adminUser',
+    web_view_user_id: 'currentUserId',
     web_view_menu: 'menuList',
     web_view_token: 'web_login_token',
 };
