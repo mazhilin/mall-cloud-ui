@@ -250,7 +250,7 @@ function reloadPageResultList(pageSize, pageLimit) {
                     });
                 }
                 //共有数据
-                $("#pageCount").html(data.result.total);
+                $("#pageCount").html(data.result.pageCount);
                 //显示本页共多少条
                 $("#allData").html(data.result.list.length);
                 //显示开始条数

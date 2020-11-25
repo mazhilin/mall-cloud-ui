@@ -86,8 +86,8 @@ function  loadPageResultList() {
     if (utils.getDeliverPage("scope") != null) {
         $('#scope').val(utils.getDeliverPage("scope"));
     }
-    let pageSize = $("#pageSize").val();
-    let pageLimit = $("#pageLimit").val();
+    let pageSize = utils.getDeliverPage($("#pageSize").val());
+    let pageLimit = utils.getDeliverPage($("#pageLimit").val());
     let status = utils.getDeliverPage("status");
     let name = utils.getDeliverPage("name");
     let scope = utils.getDeliverPage("scope");
